@@ -24,3 +24,25 @@ function Remove-FromPath {
     }
     $env:path = ($env:path.Split(';') | Where-Object { $_ -ne $pathToRemove }) -join ';'
 }
+
+function Start-Docker {
+  Start-Service docker
+  Start-Service com.docker.service
+  Start-Process "C:\Program Files\Docker\Docker\Docker for Windows.exe"
+}
+
+function Stop-Docker {
+  # Stop-Process -ErrorAction Ignore -Name "Docker for Windows" -PassThru
+  Stop-Service com.docker.service
+  Stop-Service docker
+}
+
+function Install-Theme {
+    Param( [parameter(Mandatory = $true)][String]$theme)
+    $themePath = "~\Documents\Themes\$theme.itermcolors"
+    if(!(Test-Path $themePath)) {
+        Invoke-RestMethod -Uri "https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/$theme.itermcolors" -OutFile $themePath
+        Import-Iterm2ColorScheme -Path $themePath -Name $theme
+    }
+    Get-MSTerminalProfile -Name "PowerShell Core" | Set-MSTerminalProfile -ColorScheme $theme
+}

@@ -3,6 +3,8 @@ Import-Module "$root\Modules\posh-alias\Posh-Alias.psd1"
 Set-Alias pester invoke-pester
 Set-Alias psake invoke-psake
 Set-Alias k kubectl
+Set-Alias stopc Stop-Computer
+Set-Alias restartc Restart-Computer
 function add {
     if ($args) {
         Invoke-Expression ( "git add " + ($args -join ' ') )
@@ -22,6 +24,7 @@ Add-Alias rs 'git reset'
 Add-Alias rb 'git rebase'
 Add-Alias fixup 'git fixup'
 Add-Alias branch 'git branch'
+Add-Alias branches 'git branches'
 Add-Alias tag 'git tag'
 Add-Alias up 'git up'
 Add-Alias sync 'git sync'

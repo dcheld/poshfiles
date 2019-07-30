@@ -25,3 +25,9 @@
 [submodule "Modules/posh-sshell"]
 	path = Modules/posh-sshell
 	url = https://github.com/dahlbyk/posh-sshell.git
+[submodule "Modules/Invoke-MsBuild"]
+	path = Modules/Invoke-MsBuild
+	url = git@github.com:deadlydog/Invoke-MsBuild.git
+[submodule ".\\Modules\\MSTerminalSettings"]
+	path = .\\Modules\\MSTerminalSettings
+	url = git@github.com:gpduck/MSTerminalSettings.git

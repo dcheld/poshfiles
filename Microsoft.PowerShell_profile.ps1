@@ -4,7 +4,7 @@ if ($isWin -and $null -eq $env:HOME -and $null -ne $env:USERPROFILE) {
     $env:HOME = $env:USERPROFILE
 }
 
-. "$root/InstallModules.ps1"
+# . "$root/InstallModules.ps1"
 
 if ($isWin -and (Test-Path "$env:ProgramFiles\Git\usr\bin") -and ($env:path.IndexOf("$($env:ProgramFiles)\Git\usr\bin", [StringComparison]::CurrentCultureIgnoreCase) -lt 0)) {
     # enable ssh-agent from posh-git
@@ -15,14 +15,17 @@ Import-Module "$root/Modules/oh-my-posh/oh-my-posh.psm1" #don't import the psd1,
 Import-Module "$root/Modules/PowerShellGuard/PowerShellGuard.psm1" #don't import the psd1, it has an incorrect string in the version field
 Import-Module "$root/Modules/psake/src/psake.psd1"
 Import-Module "$root/Modules/DockerCompletion/DockerCompletion/DockerCompletion.psd1"
+Import-Module "$root/Modules/Invoke-MsBuild/src/Invoke-MsBuild/Invoke-MsBuild.psd1"
+Import-Module "$root/Modules/MSTerminalSettings/src/MSTerminalSettings.psd1"
 if ($isWin) { Import-Module $root\Modules\z\z.psm1 }
 
-if (!(Get-Process ssh-agent -ErrorAction Ignore)) {
-    Start-SshAgent -Quiet
+if (!(Get-Process -ErrorAction Ignore -Name Ssh-Agent)) {
+  Start-SshAgent -Quiet
 }
+
 $ThemeSettings.MyThemesLocation = Join-Path $root PoshThemes
-Set-Theme Mesh
-if (Get-Command colortool -ErrorAction Ignore) { colortool --quiet campbell.ini }
+Set-Theme Paradox
+if (Get-Command colortool -ErrorAction Ignore) { colortool --quiet campbell }
 
 if (Get-Command vim -ErrorAction Ignore) {
     Set-PSReadlineOption -EditMode Vi
@@ -39,12 +42,12 @@ if (Get-Command vim -ErrorAction Ignore) {
     }
 }
 
-$kubeConfigHome = Join-Path $env:HOME '.kube'
-if (Test-Path $kubeConfigHome) {
-    $env:KUBECONFIG = Get-ChildItem $kubeConfigHome -File | ForEach-Object { $kubeConfig = '' } { $kubeConfig += "$($_.FullName)$([System.IO.Path]::PathSeparator)" } { $kubeConfig }
-    Remove-Variable kubeConfig
-}
-Remove-Variable kubeConfigHome
+# $kubeConfigHome = Join-Path $env:HOME '.kube'
+# if (Test-Path $kubeConfigHome) {
+#     $env:KUBECONFIG = Get-ChildItem $kubeConfigHome -File | ForEach-Object { $kubeConfig = '' } { $kubeConfig += "$($_.FullName)$([System.IO.Path]::PathSeparator)" } { $kubeConfig }
+#     Remove-Variable kubeConfig
+# }
+# Remove-Variable kubeConfigHome
 
 if ($PSVersionTable.PSEdition -eq 'Desktop') {
     $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
