@@ -43,6 +43,12 @@ if (Get-Command curl -CommandType Application -ErrorAction Ignore) {
 }
 
 function pushsync() {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory=$false)]
+        [string] $RemoteName = "origin"
+    )
+
     $branch = $(git rev-parse --abbrev-ref HEAD)
-    git push --set-upstream origin $branch
+    git push --set-upstream $RemoteName $branch
 }

@@ -31,11 +31,11 @@ function Start-Docker {
   Start-Process "C:\Program Files\Docker\Docker\Docker for Windows.exe"
 }
 
-function Stop-Docker {
-  # Stop-Process -ErrorAction Ignore -Name "Docker for Windows" -PassThru
-  Stop-Service com.docker.service
-  Stop-Service docker
-}
+# function Stop-Docker {
+#   # Stop-Process -ErrorAction Ignore -Name "Docker for Windows" -PassThru
+#   Stop-Service com.docker.service
+#   Stop-Service docker
+# }
 
 function Install-Theme {
     Param( [parameter(Mandatory = $true)][String]$theme)
