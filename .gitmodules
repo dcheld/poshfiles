@@ -31,3 +31,6 @@
 [submodule ".\\Modules\\MSTerminalSettings"]
 	path = .\\Modules\\MSTerminalSettings
 	url = git@github.com:gpduck/MSTerminalSettings.git
+[submodule "Modules/MSTerminalSettings"]
+	path = Modules/MSTerminalSettings
+	url = git@github.com:gpduck/MSTerminalSettings.git
