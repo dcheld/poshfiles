@@ -21,7 +21,6 @@ if ($isWin) { Import-Module $root\Modules\z\z.psm1 }
 
 if (!(Get-Process -ErrorAction Ignore -Name Ssh-Agent)) {
   Start-SshAgent -Quiet
-  Ssh-Add ~/.ssh/id_github
 }
 
 $ThemeSettings.MyThemesLocation = Join-Path $root PoshThemes
