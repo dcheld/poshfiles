@@ -28,9 +28,9 @@
 [submodule "Modules/Invoke-MsBuild"]
 	path = Modules/Invoke-MsBuild
 	url = git@github.com:deadlydog/Invoke-MsBuild.git
-[submodule ".\\Modules\\MSTerminalSettings"]
-	path = .\\Modules\\MSTerminalSettings
-	url = git@github.com:gpduck/MSTerminalSettings.git
 [submodule "Modules/MSTerminalSettings"]
 	path = Modules/MSTerminalSettings
 	url = git@github.com:gpduck/MSTerminalSettings.git
+[submodule "Modules/DockerComposeCompletion"]
+	path = Modules/DockerComposeCompletion
+	url = git@github.com:matt9ucci/DockerComposeCompletion.git
