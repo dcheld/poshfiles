@@ -5,6 +5,8 @@ Set-Alias psake invoke-psake
 Set-Alias k kubectl
 Set-Alias stopc Stop-Computer
 Set-Alias restartc Restart-Computer
+Set-Alias d docker
+Set-Alias dc docker-compose
 function add {
     if ($args) {
         Invoke-Expression ( "git add " + ($args -join ' ') )
