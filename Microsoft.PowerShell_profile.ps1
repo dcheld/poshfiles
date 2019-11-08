@@ -13,17 +13,17 @@ if ($isWin -and (Test-Path "$env:ProgramFiles\Git\usr\bin") -and ($env:path.Inde
 Import-Module "$root/Modules/posh-git/src/posh-git.psd1"
 Import-Module "$root/Modules/oh-my-posh/oh-my-posh.psm1" #don't import the psd1, it has an incorrect string in the version field
 Import-Module "$root/Modules/PowerShellGuard/PowerShellGuard.psm1" #don't import the psd1, it has an incorrect string in the version field
-Import-Module "$root/Modules/psake/src/psake.psd1"
-Import-Module "$root/Modules/DockerCompletion/DockerCompletion/DockerCompletion.psd1"
-Import-Module "$root/Modules/Invoke-MsBuild/src/Invoke-MsBuild/Invoke-MsBuild.psd1"
 Import-Module "$root/Modules/MSTerminalSettings/src/MSTerminalSettings.psd1"
 Import-Module "$root/Modules/DockerComposeCompletion/DockerComposeCompletion/DockerComposeCompletion.psd1"
+# Import-Module "$root/Modules/DockerCompletion/DockerCompletion/DockerCompletion.psd1"
+# Import-Module "$root/Modules/Invoke-MsBuild/src/Invoke-MsBuild/Invoke-MsBuild.psd1"
+# Import-Module "$root/Modules/psake/src/psake.psd1"
 
         
 if ($isWin) { Import-Module $root\Modules\z\z.psm1 }
 
 if (!(Get-Process -ErrorAction Ignore -Name Ssh-Agent)) {
-  Start-SshAgent -Quiet
+  # Start-SshAgent -Quiet
 }
 
 $ThemeSettings.MyThemesLocation = Join-Path $root PoshThemes
@@ -72,7 +72,7 @@ if ($PSVersionTable.PSEdition -eq 'Desktop') {
     }
 }
 
-. "$root/InstallTools.ps1"
+# . "$root/InstallTools.ps1"
 . "$root/Completions.ps1"
 . "$root/CreateAliases.ps1"
 . "$root/Functions.ps1"
