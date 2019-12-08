@@ -5,7 +5,8 @@ These are my personal poshfiles.
 Installation instructions:
 
 ````powershell
-git clone --recursive https://github.com/giggio/poshfiles.git $env:userprofile\Documents\WindowsPowerShell
+git clone --recursive https://github.com/dcheld/poshfiles $env:userprofile\source\repos\poshfiles
+ni -ItemType SymbolicLink -Path $env:userprofile\Documents\PowerShell -Value $env:userprofile\source\repos\poshfile
 ````
 
 I have several [aliases](https://github.com/giggio/poshfiles/blob/master/Microsoft.PowerShell_profile.ps1) configured
