@@ -1,4 +1,4 @@
-# Giovanni Bassi's PowerShell files
+# PowerShell files
 
 These are my personal poshfiles.
 
