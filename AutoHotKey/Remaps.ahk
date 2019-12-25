@@ -1,6 +1,7 @@
 #SingleInstance Ignone
 Capslock::Esc
 #Capslock::Capslock
+#Esc::Capslock
 
 #^k::
 Send,#^{Right}
