@@ -6,7 +6,7 @@ Installation instructions:
 
 ````powershell
 git clone --recursive https://github.com/dcheld/poshfiles $env:userprofile\source\repos\poshfiles
-ni -ItemType SymbolicLink -Path $env:userprofile\Documents\PowerShell -Value $env:userprofile\source\repos\poshfile
+ni -ItemType SymbolicLink -Path $env:userprofile\Documents\PowerShell -Value $env:userprofile\source\repos\poshfiles
 ````
 
 I have several [aliases](https://github.com/giggio/poshfiles/blob/master/Microsoft.PowerShell_profile.ps1) configured
