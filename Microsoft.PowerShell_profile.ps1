@@ -19,7 +19,6 @@ Import-Module "$root/Modules/DockerComposeCompletion/DockerComposeCompletion/Doc
 # Import-Module "$root/Modules/Invoke-MsBuild/src/Invoke-MsBuild/Invoke-MsBuild.psd1"
 # Import-Module "$root/Modules/psake/src/psake.psd1"
 
-        
 if ($isWin) { Import-Module $root\Modules\z\z.psm1 }
 
 if (!(Get-Process -ErrorAction Ignore -Name Ssh-Agent)) {
