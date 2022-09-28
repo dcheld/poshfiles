@@ -21,10 +21,6 @@ Import-Module "$root/Modules/DockerComposeCompletion/DockerComposeCompletion/Doc
 
 if ($isWin) { Import-Module $root\Modules\z\z.psm1 }
 
-if (!(Get-Process -ErrorAction Ignore -Name Ssh-Agent)) {
-  Start-SshAgent -Quiet
-}
-
 $ThemeSettings.MyThemesLocation = Join-Path $root PoshThemes
 Set-Theme Paradox
 if (Get-Command colortool -ErrorAction Ignore) { colortool --quiet campbell }
