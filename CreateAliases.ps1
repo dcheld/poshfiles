@@ -8,6 +8,7 @@ Set-Alias restartc Restart-Computer
 Set-Alias d docker
 Set-Alias dc docker-compose
 Set-Alias g git
+# Set-Alias docker nerdctl
 function add {
     if ($args) {
         Invoke-Expression ( "git add " + ($args -join ' ') )
