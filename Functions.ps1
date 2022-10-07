@@ -34,3 +34,25 @@ function Install-Theme {
     }
     Get-MSTerminalProfile -Name "PowerShell Core 7" | Set-MSTerminalProfile -ColorScheme $theme
 }
+function Load-VSTools {
+    if ($isWin) {
+        $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+        if (Test-Path $vswhere) {
+            [array]$vss = . $vswhere -Property installationPath
+            if ($vss.Count -ne 0) {
+                $vsPath = $vss[0]
+                Import-Module "$vsPath\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
+                Enter-VsDevShell -VsInstallPath $vsPath > $null
+            }
+        }
+        elseif (Get-Module VSSetup) {
+            [array]$vss = Get-VSSetupInstance | Where-Object { $_.InstallationVersion.Major -ge 17 } | Select-Object -Property InstallationPath -First 1
+            if ($vss.Count -ne 0) {
+                $vsPath = $vss[0].InstallationPath
+                Import-Module "$vsPath\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
+                Enter-VsDevShell -VsInstallPath $vsPath > $null
+            }
+        }
+    }
+}
+

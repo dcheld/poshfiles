@@ -25,23 +25,6 @@ $ThemeSettings.MyThemesLocation = Join-Path $root PoshThemes
 Set-Theme $env:MyTheme
 if (Get-Command colortool -ErrorAction Ignore) { colortool --quiet campbell }
 
-if (Get-Command vim -ErrorAction Ignore) {
-
-    Set-PSReadlineOption -EditMode emacs
-    Set-PSReadlineKeyHandler -Key Ctrl+r -Function ReverseSearchHistory
-    Set-PSReadlineKeyHandler -Key Ctrl+Shift+r -Function ForwardSearchHistory
-    Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-    Set-PSReadlineKeyHandler -Key Shift+Tab -Function TabCompletePrevious
-
-    if (!($env:VISUAL)) {
-        $env:VISUAL = "vim"
-    }
-    if (!($env:GIT_EDITOR)) {
-        $vimPath = (Get-Command vim).Path
-        $env:GIT_EDITOR = "'$vimPath'"
-    }
-}
-
 # $kubeConfigHome = Join-Path $env:HOME '.kube'
 # if (Test-Path $kubeConfigHome) {
 #     $env:KUBECONFIG = Get-ChildItem $kubeConfigHome -File | ForEach-Object { $kubeConfig = '' } { $kubeConfig += "$($_.FullName)$([System.IO.Path]::PathSeparator)" } { $kubeConfig }
@@ -49,28 +32,9 @@ if (Get-Command vim -ErrorAction Ignore) {
 # }
 # Remove-Variable kubeConfigHome
 
-if ($PSVersionTable.PSEdition -eq 'Desktop') {
-    $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-    if (Test-Path $vswhere) {
-        [array]$vss = . $vswhere -version 16 -property installationpath
-        if ($vss.Count -ne 0) {
-            $vsPath = $vss[0]
-            Import-Module "$vsPath\Common7\Tools\vsdevshell\Microsoft.VisualStudio.DevShell.dll"
-            Enter-VsDevShell -VsInstallPath $vsPath > $null
-        }
-    }
-    elseif (Get-Module VSSetup) {
-        [array]$vss = Get-VSSetupInstance | Where-Object { $_.InstallationVersion.Major -ge 17 } | Select-Object -Property InstallationPath -First 1
-        if ($vss.Count -ne 0) {
-            $vsPath = $vss[0].InstallationPath
-            Import-Module "$vsPath\Common7\Tools\vsdevshell\Microsoft.VisualStudio.DevShell.dll"
-            Enter-VsDevShell -VsInstallPath $vsPath > $null
-        }
-    }
-}
-
 # . "$root/InstallTools.ps1"
 . "$root/Completions.ps1"
+. "$root/PSReadlineConfig.ps1"
 . "$root/CreateAliases.ps1"
 . "$root/Functions.ps1"
 
