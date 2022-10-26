@@ -22,7 +22,7 @@ Import-Module "$root/Modules/PowerShellGuard/PowerShellGuard.psm1" #don't import
 if ($isWin) { Import-Module $root\Modules\z\z.psm1 }
 
 $ThemeSettings.MyThemesLocation = Join-Path $root PoshThemes
-Set-Theme $env:MyTheme
+Set-Theme "Powerlevel10k-Classic"
 if (Get-Command colortool -ErrorAction Ignore) { colortool --quiet campbell }
 
 # $kubeConfigHome = Join-Path $env:HOME '.kube'
