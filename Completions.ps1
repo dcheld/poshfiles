@@ -1,4 +1,4 @@
-$root = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+#!/usr/bin/env pwsh
 
 if (Get-Command dotnet -ErrorAction Ignore) {
     Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
@@ -9,11 +9,6 @@ if (Get-Command dotnet -ErrorAction Ignore) {
     }
 }
 
-. "$root/Modules/psake/tabexpansion/PsakeTabExpansion.ps1"
-if ((Test-Path Function:\TabExpansion) -and (-not (Test-Path Function:\DefaultTabExpansion))) {
-    Rename-Item Function:\TabExpansion DefaultTabExpansion
-}
-# Set up tab expansion and include psake expansion
 function TabExpansion($line, $lastWord) {
     $lastBlock = [regex]::Split($line, '[|;]')[-1]
     switch -regex ($lastBlock) {

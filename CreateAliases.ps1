@@ -1,5 +1,5 @@
-$root = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
-Import-Module "$root\Modules\posh-alias\Posh-Alias.psd1"
+#!/usr/bin/env pwsh
+
 Set-Alias pester invoke-pester
 Set-Alias psake invoke-psake
 Set-Alias k kubectl
@@ -8,14 +8,7 @@ Set-Alias restartc Restart-Computer
 Set-Alias d docker
 Set-Alias dc docker-compose
 Set-Alias g git
-function add {
-    if ($args) {
-        Invoke-Expression ( "git add " + ($args -join ' ') )
-    }
-    else {
-        git add -A :/
-    }
-}
+
 Add-Alias st 'git status'
 Add-Alias push 'git push'
 Add-Alias pull 'git pull'
@@ -46,15 +39,4 @@ if (Get-Command curl -CommandType Application -ErrorAction Ignore) {
     if (Get-Alias curl -ErrorAction Ignore) {
         Remove-Item alias:curl
     }
-}
-
-function pushsync() {
-    [CmdletBinding()]
-    Param(
-        [Parameter(Mandatory=$false)]
-        [string] $RemoteName = "origin"
-    )
-
-    $branch = $(git rev-parse --abbrev-ref HEAD)
-    git push --set-upstream $RemoteName $branch
 }

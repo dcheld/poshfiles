@@ -1,5 +1,3 @@
-Modules/VSSetup
-Modules/PSReadLine
-Modules/PackageManagement
-Modules/PowerShellGet
-bin
+Modules/
+Scripts/
+**/bin

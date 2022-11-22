@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 #log history
 $historyFilePath = Join-Path ([Environment]::GetFolderPath('UserProfile')) .ps_history
 if (Test-Path $historyFilePath) {

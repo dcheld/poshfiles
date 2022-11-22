@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 git config --global alias.aliases "! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /"
 git config --global alias.co checkout
 git config --global alias.br branch
