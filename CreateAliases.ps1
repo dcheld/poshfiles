@@ -31,9 +31,7 @@ Add-Alias ccat "pygmentize.exe -g -O style=vs -f console16m"
 Add-Alias .. "cd ../"
 Add-Alias ... "cd ../../"
 Add-Alias .... "cd ../../../"
-# if (Get-Command hub -ErrorAction Ignore) {
-#     Add-Alias git "$($(Get-Command hub).Source)"
-# }
+
 if (Get-Command curl -CommandType Application -ErrorAction Ignore) {
     #use system curl if available
     if (Get-Alias curl -ErrorAction Ignore) {
