@@ -7,8 +7,8 @@ if ($isWin -and $null -eq $env:HOME -and $null -ne $env:USERPROFILE) {
     $env:HOME = $env:USERPROFILE
 }
 
-Import-Module -Scope Local -Name posh-alias
-Import-Module -Scope Local -Name z
+Import-Module -Scope Local -Name "$root/Modules/posh-alias/Posh-Alias.psm1"
+Import-Module -Scope Local -Name "$root/Modules/z/z.psm1"
 . "$root/ImportModuleOMP.ps1"
 
 if (Get-Command colortool -ErrorAction Ignore) { colortool --quiet campbell }
