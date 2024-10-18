@@ -36,6 +36,10 @@ function Remove-FromPath {
     $env:path = ($env:path.Split(';') | Where-Object { $_ -ne $pathToRemove }) -join ';'
 }
 
+function Remove-Dotnet-Bin(){
+    Get-ChildItem .\ -include bin,obj -Recurse | foreach ($_) { remove-item $_.fullname -Force -Recurse }
+}
+
 function Load-VSTools {
     if ($isWin) {
         $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
