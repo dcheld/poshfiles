@@ -61,3 +61,18 @@ function Load-VSTools {
         }
     }
 }
+
+function cdr {
+    try {
+        $root = git rev-parse --show-toplevel 2>$null
+        if ($LASTEXITCODE -eq 0 -and $root) {
+            Set-Location $root
+        }
+        else {
+            Write-Host "O diretório atual não é controlado pelo git" -ForegroundColor Red
+        }
+    }
+    catch {
+        Write-Host "O diretório atual não é controlado pelo git" -ForegroundColor Red
+    }
+}
